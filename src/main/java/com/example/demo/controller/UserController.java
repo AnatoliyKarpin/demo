@@ -41,6 +41,15 @@ public class UserController {
         userRepository.deleteAll();
         return ResponseEntity.ok().build();
     }
+    @PutMapping("/users/{id}")
+    public ResponseEntity<UserInfo> updateUser(@PathVariable Long id, @RequestBody UserInfo userInfo) {
+        UserEntity user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        user.setFirstName(userInfo.getFirstName());
+        user.setLastName(userInfo.getLastName());
+        userRepository.save(user);
+        return ResponseEntity.ok(new UserInfo(userInfo.getId(), userInfo.getFirstName(), userInfo.getLastName()));
+    }
 
     @PutMapping("/users/lastname")
     public ResponseEntity<Void> updateAllLastnames(@RequestParam String value) {

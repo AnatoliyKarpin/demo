@@ -9,6 +9,8 @@ public class UserInfo {
 
     @JsonProperty("lastname")
     private String lastName;
+    @JsonProperty("id")
+    private Long id;
 
     public UserInfo() {
     }
@@ -16,6 +18,9 @@ public class UserInfo {
     public UserInfo(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.id=id;
+    }
+    public UserInfo(Long id, String firstName, String lastName) {
     }
 
     public String getFirstName() {
@@ -32,5 +37,9 @@ public class UserInfo {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
