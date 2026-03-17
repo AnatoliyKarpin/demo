@@ -15,7 +15,7 @@ public class UserInfo {
     public UserInfo() {
     }
 
-    public UserInfo(String firstName, String lastName) {
+    public UserInfo(String firstName, String lastName, Long id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.id=id;
