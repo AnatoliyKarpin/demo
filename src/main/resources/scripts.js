@@ -1,10 +1,5 @@
-
-
-
-
-
-
 let currentUserId = null;
+
 
 function userList() {
     $.ajax({
@@ -21,7 +16,7 @@ function userList() {
 }
 
 function userListSuccess(users) {
-    $("#userTable tbody").remove(); // очищаем таблицу
+    $("#userTable tbody").remove();
     $.each(users, function (index, user) {
         userAddRow(user);
     });
@@ -38,6 +33,7 @@ function userBuildTableRow(user) {
     return "<tr>" +
         "<td>" + user.firstname + "</td>" +
         "<td>" + user.lastname + "</td>" +
+        "<td>" + user.age + "</td>" +
         "<td><button class='btn btn-sm btn-primary' onclick='deleteUser(" + user.id + ")'>Delete</button></td>" +
         "<td><button class='btn btn-sm btn-primary' onclick='editUser(" + user.id + ")'>Update</button></td>" +
         "</tr>";
@@ -68,10 +64,11 @@ function deleteUser(id) {
     });
 }
 
-function editUser(id, firstname, lastname) {
+function editUser(id, firstname, lastname, age) {
     currentUserId = id;
     $("#firstname").val(firstname);
     $("#lastname").val(lastname);
+    $("#age").val(age);
     $("#updateButton").text("Update");
 }
 
@@ -88,6 +85,7 @@ function handleException(request, message, error) {
 function formClear() {
     $("#firstname").val("");
     $("#lastname").val("");
+    $("#age").val("");
     currentUserId = null;
     $("#updateButton").text("Add");
 }
@@ -95,7 +93,8 @@ function formClear() {
 function updateClick() {
     const user = {
         firstname: $("#firstname").val(),
-        lastname: $("#lastname").val()
+        lastname: $("#lastname").val(),
+        age: $("#age").val()
     };
     if (currentUserId) {
         updateUser(currentUserId, user);
@@ -121,7 +120,7 @@ function userAdd(user) {
 
 function userAddSuccess(user) {
     formClear();
-    userList(); // перезагружаем таблицу
+    userList();
 }
 
 function updateUser(id, user) {

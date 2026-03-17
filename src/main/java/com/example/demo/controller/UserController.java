@@ -23,7 +23,7 @@ public class UserController {
         List<UserEntity> users = userRepository.findAll();
         List<UserInfo> resultUsers = new ArrayList<>();
         for (UserEntity user : users) {
-            resultUsers.add(new UserInfo(user.getFirstName(), user.getLastName(), user.getId()));
+            resultUsers.add(new UserInfo(user.getFirstName(), user.getLastName(), user.getAge(), user.getId()));
         }
 
         return ResponseEntity.ok(resultUsers);
@@ -31,8 +31,8 @@ public class UserController {
 
     @PostMapping("/users")
     public ResponseEntity<UserInfo> createUser(@RequestBody UserInfo userInfo) {
-        userRepository.save(new UserEntity(userInfo.getFirstName(), userInfo.getLastName()));
-        return ResponseEntity.ok(new UserInfo(userInfo.getFirstName(), userInfo.getLastName(), userInfo.getId()));
+        userRepository.save(new UserEntity(userInfo.getFirstName(), userInfo.getLastName(), userInfo.getAge()));
+        return ResponseEntity.ok(new UserInfo(userInfo.getFirstName(), userInfo.getLastName(), userInfo.getAge(), userInfo.getId()));
 
     }
 
@@ -56,8 +56,9 @@ public class UserController {
                 .orElseThrow(() -> new RuntimeException("User not found"));
         user.setFirstName(userInfo.getFirstName());
         user.setLastName(userInfo.getLastName());
+        user.setAge(userInfo.getAge());
         userRepository.save(user);
-        return ResponseEntity.ok(new UserInfo(user.getFirstName(), user.getLastName(), user.getId()));
+        return ResponseEntity.ok(new UserInfo(user.getFirstName(), user.getLastName(), userInfo.getAge(), user.getId()));
     }
 
     @PutMapping("/users/lastname")

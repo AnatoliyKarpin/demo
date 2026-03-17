@@ -9,13 +9,25 @@ public class UserInfo {
 
     @JsonProperty("lastname")
     private String lastName;
+    @JsonProperty("age")
+    private Long age;
     @JsonProperty("id")
     private Long id;
 
-    public UserInfo(String firstName, String lastName, Long id) {
+    public UserInfo(String firstName, String lastName,Long age, Long id) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.age = age;
         this.id=id;
+
+    }
+
+    public Long getAge() {
+        return age;
+    }
+
+    public void setAge(Long age) {
+        this.age = age;
     }
 
     public String getFirstName() {
