@@ -20,8 +20,6 @@ public class UserInfo {
         this.lastName = lastName;
         this.id=id;
     }
-    public UserInfo(Long id, String firstName, String lastName) {
-    }
 
     public String getFirstName() {
         return firstName;
