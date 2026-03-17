@@ -62,10 +62,28 @@ public class UserController {
     }
 
     @PutMapping("/users/lastname")
-    public ResponseEntity<Void> updateAllLastnames(@RequestParam String value) {
+    public ResponseEntity<Void> updateAllLastnames() {
         List<UserEntity> users = userRepository.findAll();
         for (UserEntity user : users) {
-            user.setLastName(value);
+            user.setLastName("Karpin");
+        }
+        userRepository.saveAll(users);
+        return ResponseEntity.ok().build();
+    }
+    @PutMapping("/users/age")
+    public ResponseEntity<Void> updateAllAgeTo100() {
+        List<UserEntity> users = userRepository.findAll();
+        for (UserEntity user : users) {
+            user.setAge(100L);
+        }
+        userRepository.saveAll(users);
+        return ResponseEntity.ok().build();
+    }
+    @PutMapping("/users/firstname")
+    public ResponseEntity<Void> updateAllFirstname() {
+        List<UserEntity> users = userRepository.findAll();
+        for (UserEntity user : users) {
+            user.setFirstName("Analtoliy");
         }
         userRepository.saveAll(users);
         return ResponseEntity.ok().build();

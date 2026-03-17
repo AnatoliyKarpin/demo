@@ -154,7 +154,7 @@ function deleteAllClick() {
 }
 function changeAllToKarpin() {
     $.ajax({
-        url: 'http://localhost:8080/api/users/lastname?value=Karpin',
+        url: 'http://localhost:8080/api/users/lastname',
         type: 'PUT',
         success: function() {
             $("#userTable tbody").remove();
@@ -165,6 +165,29 @@ function changeAllToKarpin() {
         }
     });
 }
-function deleteSelectedClick() {
-
+function changeAllAgeTo100() {
+    $.ajax({
+        url: 'http://localhost:8080/api/users/age',
+        type: 'PUT',
+        success: function() {
+            $("#userTable tbody").remove();
+            userList();
+        },
+        error: function(request, message, error) {
+            handleException(request, message, error);
+        }
+    });
+}
+function changeAllToAnaltoliy() {
+    $.ajax({
+        url: 'http://localhost:8080/api/users/firstname',
+        type: 'PUT',
+        success: function() {
+            $("#userTable tbody").remove();
+            userList();
+        },
+        error: function(request, message, error) {
+            handleException(request, message, error);
+        }
+    });
 }
