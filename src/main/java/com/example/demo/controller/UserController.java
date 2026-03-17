@@ -48,7 +48,7 @@ public class UserController {
         user.setFirstName(userInfo.getFirstName());
         user.setLastName(userInfo.getLastName());
         userRepository.save(user);
-        return ResponseEntity.ok(new UserInfo(userInfo.getId(), userInfo.getFirstName(), userInfo.getLastName()));
+        return ResponseEntity.ok(new UserInfo(userInfo.getFirstName(), userInfo.getLastName(), userInfo.getId()));
     }
 
     @PutMapping("/users/lastname")
