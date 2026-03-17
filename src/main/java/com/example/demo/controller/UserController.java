@@ -41,6 +41,15 @@ public class UserController {
         userRepository.deleteAll();
         return ResponseEntity.ok().build();
     }
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<Void> deleteUserById(@PathVariable Long id) {
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
     @PutMapping("/users/{id}")
     public ResponseEntity<UserInfo> updateUser(@PathVariable Long id, @RequestBody UserInfo userInfo) {
         UserEntity user = userRepository.findById(id)
@@ -48,7 +57,7 @@ public class UserController {
         user.setFirstName(userInfo.getFirstName());
         user.setLastName(userInfo.getLastName());
         userRepository.save(user);
-        return ResponseEntity.ok(new UserInfo(userInfo.getFirstName(), userInfo.getLastName(), userInfo.getId()));
+        return ResponseEntity.ok(new UserInfo(user.getFirstName(), user.getLastName(), user.getId()));
     }
 
     @PutMapping("/users/lastname")

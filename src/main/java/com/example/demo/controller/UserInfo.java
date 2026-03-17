@@ -12,9 +12,6 @@ public class UserInfo {
     @JsonProperty("id")
     private Long id;
 
-    public UserInfo() {
-    }
-
     public UserInfo(String firstName, String lastName, Long id) {
         this.firstName = firstName;
         this.lastName = lastName;
