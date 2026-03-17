@@ -36,6 +36,7 @@ function userBuildTableRow(user) {
         "<td>" + user.age + "</td>" +
         "<td><button class='btn btn-sm btn-primary' onclick='deleteUser(" + user.id + ")'>Delete</button></td>" +
         "<td><button class='btn btn-sm btn-primary' onclick='editUser(" + user.id + ")'>Update</button></td>" +
+        "<td><input type='checkbox'></td>"
         "</tr>";
 }
 
@@ -163,4 +164,7 @@ function changeAllToKarpin() {
             handleException(request, message, error);
         }
     });
+}
+function deleteSelectedClick() {
+
 }
